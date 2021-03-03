@@ -1,35 +1,64 @@
 \documentclass[a4paper,12pt]{article}
-%\lstset{basicstyle=\ttfamily\color{black}}
+\usepackage{amsmath}
+\usepackage{amssymb}
 % \usepackage{inconsolata}
 \begin{document}
 
 1)
-
-a) \begin{verbatim} 10 \end{verbatim}
-b) \begin{verbatim} (+ 5 3 4) \end{verbatim}
-c) \texttt{(- 9 1)}
-d) \texttt{(/ 6 2)}
-e) \texttt{(+ (* 2 4) (- 4 6))}
-f) \texttt{(define a 3)}
-g) \texttt{(define b (+ a 1))}
-h) \texttt{(+ a b (* a b))}
-i) \texttt{(= a b)}
-j) \texttt{(if (and (> b a) (< b (* a b)))
+\\a) \texttt{10} \rightarrow \texttt{Value: 10}
+\\b) \texttt{(+ 5 3 4)} \rightarrow \texttt{Value: 12}
+\\c) \texttt{(- 9 1)} \rightarrow \texttt{Value: 8}
+\\d) \texttt{(/ 6 2)} \rightarrow \texttt{Value: 3}
+\\e) \texttt{(+ (* 2 4) (- 4 6))} \rightarrow \texttt{Value: 6}
+\\f) \texttt{(define a 3)} \rightarrow \texttt{Value: 3}
+\\g) \texttt{(define b (+ a 1))} \rightarrow \texttt{Value: 3}
+\\h) \texttt{(+ a b (* a b))} \rightarrow \texttt{Value: 19}
+\\i) \texttt{(= a b)} \rightarrow \texttt{Value: #f}
+\\j) \texttt{(if (and (> b a) (< b (* a b)))
     b
-    a)}
-k) \texttt{(cond ((= a 4) 6)
+    a)} \rightarrow \texttt{Value: 4}
+\\k) \texttt{(cond ((= a 4) 6)
       ((= b 4) (+ 6 7 a))
-      (else 25))}
-l) \texttt{(+ 2 (if (> b a) b a))}
-m) \texttt{(* (cond ((> a b) a)
+      (else 25))} \rightarrow \texttt{Value: 16}
+\\l) \texttt{(+ 2 (if (> b a) b a))} \rightarrow \texttt{Value: 6}
+\\m) \texttt{(* (cond ((> a b) a)
          ((< a b) b)
          (else -1))
-   (+ a 1))}
+   (+ a 1))} \rightarrow \texttt{Value: 16}
 
-2)
+2) Translate $\frac{5 + 4 + (2 - (3 - (6 + \frac{4}{5})))}{3 \cdot (6 - 2)(2 - 7)}$ in to prefix form.
 
-$\frac{5 + 4 + (2 - (3 - (6 + \frac{4}{5})))}{3 \cdot (6 - 2)(2 - 7)}$ \rightarrow \texttt{(* 3 (* (- 6 2) (- 2 7)))}
+$5+4+(2-(3-(6+\frac{4}{5})))$ \rightarrow \texttt{(+ 5 (+ 4 (- 2 (- 3 (+ 6 4/5)))))}
 
-$5+4+(2-(3-(6+\frac{4}{5})))$ 
+$3 \cdot (6 - 2)(2 - 7)$ \rightarrow \texttt{(* 3 (* (- 6 2) (- 2 7)))}
 
+\therefore $\frac{5 + 4 + (2 - (3 - (6 + \frac{4}{5})))}{3 \cdot (6 - 2)(2 - 7)}$ \Rightarrow \texttt{(\ (+ 5 (+ 4 (- 2 (- 3 (+ 6 4/5))))) (* 3 (* (- 6 2) (- 2 7))))}
+
+3) Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.
+
+\texttt{(define (sq-sum x y)
+    (+ (* x x) (* y y)))
+
+(define (gr-three a b c)
+    (cond ((= a b c) (sq-sum a b))
+        ((and (>= a b) (>= a c))
+            (if (>= b c)
+                (sq-sum a b)
+                (sq-sum a c)))
+        ((and (>= b c) (>= b a))
+            (if (>= c a)
+                (sq-sum b c)
+                (sq-sum b a)))
+        ((and (>= c a) (>= c b))
+            (if (>= a b)
+                (sq-sum c a)
+                (sq-sum c b)))
+
+    )
+)}
+
+4) Observe that our model of evaluation allows for combinations whose operators are compound expressions. Use this observation to describe the behavior of the following procedure:
+
+\\texttt{(define (a-plus-abs-b a b)
+  ((if (> b 0) + -) a b))}
 \end{document}
