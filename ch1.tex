@@ -1,0 +1,35 @@
+\documentclass[a4paper,12pt]{article}
+%\lstset{basicstyle=\ttfamily\color{black}}
+% \usepackage{inconsolata}
+\begin{document}
+
+1)
+
+a) \begin{verbatim} 10 \end{verbatim}
+b) \begin{verbatim} (+ 5 3 4) \end{verbatim}
+c) \texttt{(- 9 1)}
+d) \texttt{(/ 6 2)}
+e) \texttt{(+ (* 2 4) (- 4 6))}
+f) \texttt{(define a 3)}
+g) \texttt{(define b (+ a 1))}
+h) \texttt{(+ a b (* a b))}
+i) \texttt{(= a b)}
+j) \texttt{(if (and (> b a) (< b (* a b)))
+    b
+    a)}
+k) \texttt{(cond ((= a 4) 6)
+      ((= b 4) (+ 6 7 a))
+      (else 25))}
+l) \texttt{(+ 2 (if (> b a) b a))}
+m) \texttt{(* (cond ((> a b) a)
+         ((< a b) b)
+         (else -1))
+   (+ a 1))}
+
+2)
+
+$\frac{5 + 4 + (2 - (3 - (6 + \frac{4}{5})))}{3 \cdot (6 - 2)(2 - 7)}$ \rightarrow \texttt{(* 3 (* (- 6 2) (- 2 7)))}
+
+$5+4+(2-(3-(6+\frac{4}{5})))$ 
+
+\end{document}
